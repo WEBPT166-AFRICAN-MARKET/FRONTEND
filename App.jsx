@@ -1,9 +1,13 @@
 import React from 'react';
+import { Route } from 'react-router';
+
+// View Components
+import Root from './views/Root';
 
 const App = () => {
   return (
     <div>
-      <h1>Hello World</h1>
+      <Route exact path="/" component={Root} />
     </div>
   );
 };
