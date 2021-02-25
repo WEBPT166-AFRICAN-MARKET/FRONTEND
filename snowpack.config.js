@@ -9,7 +9,8 @@ module.exports = {
 	],
 	optimize: {
 		/* Example: Bundle your final build: */
-		minify: true
+		minify: true,
+		bundle: true
 	},
 	packageOptions: {
 		/* ... */
@@ -17,9 +18,5 @@ module.exports = {
 	devOptions: {
 		/* ... */
 	},
-	buildOptions: {
-		watch: true,
-		clean: true,
-		out: 'build'
-	}
+	buildOptions: {}
 };
