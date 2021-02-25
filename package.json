@@ -1,8 +1,5 @@
 {
   "scripts": {
-    "start:json-server": "json-server -w db.json",
-    "start:run": "snowpack dev",
-    "dev": "concurrently npm:start:*",
     "start": "snowpack dev",
     "build": "snowpack build",
     "babel": "babel src/ --out-dir build --watch",
@@ -10,8 +7,6 @@
   },
   "devDependencies": {
     "@snowpack/plugin-babel": "^2.1.6",
-    "concurrently": "^6.0.0",
-    "json-server": "^0.16.3",
     "snowpack": "^3.0.1"
   },
   "dependencies": {
