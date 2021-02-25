@@ -31,7 +31,8 @@ let customTheme = createMuiTheme({
 			'"Apple Color Emoji"',
 			'"Segoe UI Emoji"',
 			'"Segoe UI Symbol"'
-		].join(',')
+		].join(','),
+		fontSize: 10
 	}
 });
 
