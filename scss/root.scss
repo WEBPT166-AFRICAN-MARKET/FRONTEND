@@ -14,14 +14,39 @@
 }
 
 .paperItem {
-	// opacity: 0;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
-	background-color: #424242;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: space-between;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.9) !important;
+	background-color: #424242 !important;
 	padding: 1em 2em;
-	font-weight: 300;
-	font-size: 2em;
+	font-weight: 300 !important;
+	font-size: 2rem;
 	text-align: center;
-	color: c.$porcelain;
+	color: c.$porcelain !important;
+
+	h2,
+	p,
+	h6 {
+		margin-bottom: 0.75em;
+	}
+
+	h2 {
+		font-size: 2.5rem;
+	}
+	h6 {
+		font-size: 1.5rem;
+	}
+	p {
+		line-height: 1.25;
+	}
+	.buttonRack {
+		width: 50%;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+	}
 }
 
 .root_imageWrapper {
