@@ -9,6 +9,7 @@ module.exports = {
 	],
 	optimize: {
 		/* Example: Bundle your final build: */
+		minify: true
 	},
 	packageOptions: {
 		/* ... */
