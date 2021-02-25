@@ -1,0 +1,70 @@
+.root {
+	min-height: 100vh;
+	position: relative;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	overflow: hidden;
+
+	&_container {
+		flex: 1;
+		height: 100%;
+		position: relative;
+	}
+}
+
+.paperItem {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: space-between;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.9) !important;
+	background-color: #424242 !important;
+	padding: 1em 2em;
+	font-weight: 300 !important;
+	font-size: 2rem;
+	text-align: center;
+	color: c.$porcelain !important;
+
+	h2,
+	p,
+	h6 {
+		margin-bottom: 0.75em;
+	}
+
+	h2 {
+		font-size: 2.5rem;
+	}
+	h6 {
+		font-size: 1.5rem;
+	}
+	p {
+		line-height: 1.25;
+	}
+	.buttonRack {
+		width: 50%;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		button {
+			font-size: 1.25rem;
+		}
+	}
+}
+
+.root_imageWrapper {
+	opacity: 0.3;
+	position: absolute;
+	z-index: -5;
+	bottom: 10%;
+	width: 90%;
+	height: 85%;
+	mask: radial-gradient(c.$black 20%, transparent 73%);
+	-webkit-mask: radial-gradient(c.$black 20%, transparent 73%);
+	#desertImage {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		z-index: inherit;
+	}
+}
