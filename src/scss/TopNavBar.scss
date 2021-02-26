@@ -1,0 +1,47 @@
+@use './colors' as c;
+
+.topNavBar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 15vh;
+
+	.logo {
+		font-size: 2.5em;
+		color: c.$green;
+	}
+
+	a {
+		margin-left: 1em;
+		padding: 1em;
+		color: c.$porcelain;
+		text-decoration: none;
+		border: 1px solid c.$porcelain;
+		border-radius: 10px;
+		opacity: 0.9;
+		transition: all 0.3s ease-in-out;
+
+		:first-of-type {
+			margin-left: 0;
+		}
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	#homeNavLink,
+	#loginNavLink {
+		&:hover {
+			background-color: c.$porcelain;
+			color: c.$black;
+		}
+	}
+
+	#signupNavLink {
+		color: c.$black;
+		background-color: c.$gold;
+		border-color: c.$gold;
+		font-weight: 600;
+	}
+}
