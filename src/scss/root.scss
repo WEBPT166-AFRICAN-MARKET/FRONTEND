@@ -47,10 +47,10 @@
 		line-height: 1.25;
 	}
 	.buttonRack {
-		width: 50%;
+		width: 90%;
 		display: flex;
 		flex-flow: row wrap;
-		justify-content: space-between;
+		justify-content: space-evenly;
 		margin: 1em 0;
 		button {
 			font-size: 1.25rem;
