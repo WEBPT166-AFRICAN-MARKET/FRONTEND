@@ -13,7 +13,7 @@ const App = () => {
 		<div className="app">
 			<Container maxWidth="lg">
 				<Route exact path="/">
-					{isAuthenticated ? <UserHome /> : <Root />}
+					{isAuthenticated ? <UserHome /> : <Root /> }
 				</Route>
 			</Container>
 		</div>
