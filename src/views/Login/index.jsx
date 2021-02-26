@@ -26,7 +26,15 @@ const LoginView = (props) => {
     terms: '',
   })
 
-
+  const inputChange = (e) => {
+    e.persist()
+    console.log('The input has been changed', e.target.value)
+      const newFormData = {
+        ...formState, [e.target.name] : e.target.type === 'checkbox'
+         ? e.target.checked : e.target.value
+      }
+      setFormState(newFormData)
+  }
 
   return (
     <form>
@@ -40,7 +48,7 @@ const LoginView = (props) => {
         name='name'
         value={formState.name}
         placeholder='Name'
-        onChange='name'
+        onChange={inputChange}
         data-cy='name'
       />
 
@@ -52,7 +60,7 @@ const LoginView = (props) => {
         name='username'
         value={formState.userName}
         placeholder='Username'
-        onChange="name"
+        onChange={inputChange}
         data-cy='username'
       />
 
@@ -62,7 +70,7 @@ const LoginView = (props) => {
         name='email'
         value={formState.email}
         placeholder='Email'
-        onChange='name'
+        onChange={inputChange}
         data-cy='email'
       />
 
@@ -72,7 +80,7 @@ const LoginView = (props) => {
         name='password'
         value={formState.password}
         placeholder='Password'
-        onChange='name'
+        onChange={inputChange}
         data-cy='password'
       />
 
@@ -82,7 +90,7 @@ const LoginView = (props) => {
         name='passwordConfirm'
         value={formState.passwordConfirm}
         placeholder='Please Confirm Password'
-        onChange='name'
+        onChange={inputChange}
         data-cy='passwordConfirm'
       
       />
@@ -93,7 +101,7 @@ const LoginView = (props) => {
         name='location'
         value={formState.location}
         placeholder='Location'
-        onChange='name'
+        onChange={inputChange}
         data-cy='location'
       />
 
@@ -103,7 +111,7 @@ const LoginView = (props) => {
           type='checkbox'
           name='terms'
           checked={formState.terms}
-          onChange="Change this later"
+          onChange={inputChange}
           data-cy='terms'
         />
         Terms and Conditions
