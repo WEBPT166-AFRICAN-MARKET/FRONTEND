@@ -91,7 +91,7 @@ const Root = () => {
 									color="secondary"
 									onClick={e => handleButtonNav(e, '/signup')}
 								>
-									Login
+									Sign Up
 								</Button>
 								<Button
 									size="large"

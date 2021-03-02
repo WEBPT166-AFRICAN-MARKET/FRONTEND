@@ -18,5 +18,7 @@ module.exports = {
 	devOptions: {
 		/* ... */
 	},
-	buildOptions: {}
+	buildOptions: {
+		out: 'build'
+	}
 };

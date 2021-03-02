@@ -4,7 +4,7 @@ export const getSelectors = () => {
 	const user = {
 		isAuthenticated: (() =>
 			useSelector(({ user }) => user.isAuthenticated))(),
-		userInfo: (() => useSelector(({ user }) => user.userInfo))()
+		userData: (() => useSelector(({ user }) => user.userData))()
 	};
 
 	return { user };
