@@ -1,10 +1,7 @@
 const initialState = {
-	isAuthenticated: true,
-	userInfo: {
-		firstName: 'Ben',
-		lastName: 'Dover'
-	}
+	isAuthenticated: false
 };
+
 export const user = (state = initialState, action) => {
 	switch (action.type) {
 		default:
