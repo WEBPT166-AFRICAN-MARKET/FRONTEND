@@ -2,11 +2,7 @@ import { Box } from '@material-ui/core';
 import React from 'react';
 
 const Panel = () => {
-	return (
-		<Box>
-			<h1>Panel</h1>
-		</Box>
-	);
+	return <Box></Box>;
 };
 
 export default Panel;

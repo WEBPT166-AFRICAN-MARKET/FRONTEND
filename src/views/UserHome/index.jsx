@@ -6,9 +6,7 @@ import { getSelectors } from '../../selectors';
 import Panel from './Panel';
 
 const UserHome = () => {
-	const { firstName, lastName } = getSelectors().user.userInfo;
-
-	const fullName = `${firstName} ${lastName}`;
+	const { username } = getSelectors().user.userData;
 
 	return (
 		<motion.div className="userHomePage">
@@ -27,7 +25,7 @@ const UserHome = () => {
 							justify="space-between"
 							spacing={1}
 						>
-							<h1>Hello {fullName}</h1>
+							<h1>Hello {username}</h1>
 							<Tabs>
 								<Tab label="store" />
 								<Tab label="My Store" />

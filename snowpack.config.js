@@ -1,5 +1,6 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
+	root: '/',
 	mount: {
 		/* ... */
 	},
