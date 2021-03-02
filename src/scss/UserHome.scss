@@ -1,0 +1,23 @@
+.userHomePage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100%;
+}
+
+#userHomePanel {
+	padding: 1em;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: stretch;
+	justify-content: stretch;
+	height: 90vh;
+	flex-grow: 1;
+	background-color: #424242cc;
+	box-shadow: 0 0 1em #00000088;
+	border-radius: 0.5em;
+	.userHomeGridItem {
+		flex-grow: 1;
+	}
+}

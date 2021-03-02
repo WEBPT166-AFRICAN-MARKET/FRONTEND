@@ -10,7 +10,11 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 
 let customTheme = createMuiTheme({
 	palette: {
-		background: '#2f2f30',
+		background: {
+			lighter: '#545454cc',
+			light: '#424242cc',
+			main: '#2f2f30'
+		},
 		primary: {
 			main: '#d69e59'
 		},

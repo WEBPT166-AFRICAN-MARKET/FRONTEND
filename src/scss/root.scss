@@ -1,3 +1,5 @@
+@use './colors' as c;
+
 .root {
 	min-height: 100vh;
 	position: relative;
@@ -19,10 +21,8 @@
 	align-items: center;
 	justify-content: space-between;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.9) !important;
-	background-color: #424242 !important;
+	background-color: rgba(66, 66, 66, 0.8) !important;
 	padding: 1em 2em;
-	font-weight: 300 !important;
-	font-size: 2rem;
 	text-align: center;
 	color: c.$porcelain !important;
 
@@ -33,19 +33,25 @@
 	}
 
 	h2 {
+		margin-top: 0.5em;
 		font-size: 2.5rem;
+		font-weight: 500;
 	}
 	h6 {
+		font-weight: 400;
 		font-size: 1.5rem;
 	}
 	p {
+		font-weight: 200;
+		font-size: 1.5rem;
 		line-height: 1.25;
 	}
 	.buttonRack {
-		width: 50%;
+		width: 90%;
 		display: flex;
 		flex-flow: row wrap;
-		justify-content: space-between;
+		justify-content: space-evenly;
+		margin: 1em 0;
 		button {
 			font-size: 1.25rem;
 		}
