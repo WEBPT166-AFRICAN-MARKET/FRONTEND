@@ -1,8 +1,7 @@
 const initialState = {
 	isAuthenticated: true,
 	userInfo: {
-		firstName: 'Ben',
-		lastName: 'Dover'
+		username: 'BenDover'
 	}
 };
 export const user = (state = initialState, action) => {
