@@ -1,11 +1,7 @@
-import actions from '../actions/actions';
+import { actions } from '../actionTypes';
 
 const initialState = {
-	credentials: {
-		username: '',
-		password: ''
-	},
-	data: [],
+	userData: undefined,
 	isLoading: false,
 	isAuthenticated: false,
 	error: ''
@@ -14,21 +10,21 @@ const initialState = {
 
 export const user = (state = initialState, action) => {
 	switch (action.type) {
-		case actions.LOGIN_START:
+		case actions.user.LOGIN_START:
 			return {
 				...state,
-				isAuthenticated: true,
-				isLoading: true
+				isLoading: true,
+				error: ''
 			};
-		case actions.LOGIN_SUCCESS:
+		case actions.user.LOGIN_SUCCESS:
+			console.log('success');
 			return {
 				...state,
 				isLoading: false,
-				data: action.payload,
-				isAuthenticated: true,
-				error: ''
+				userData: action.payload,
+				isAuthenticated: true
 			};
-		case actions.LOGIN_FAIL:
+		case actions.user.LOGIN_FAIL:
 			return {
 				...state,
 				isAuthenticated: false,
