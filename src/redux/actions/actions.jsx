@@ -1,4 +1,4 @@
-import axiosWithAuth from '../axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export const actions = {
     FETCHING_START: 'FETCHING_START',
@@ -48,3 +48,9 @@ export const deleteItem = (dispatch) => {
     })
     .catch(error => dispatch({type: FETCHING_FAIL, payload: error}))
 }
+
+export const logout = () => {
+    axiosWithAuth().post('/login')
+      .catch(error => console.log('unable to logout', error));
+      localStorage.removeItem('token');
+  }
