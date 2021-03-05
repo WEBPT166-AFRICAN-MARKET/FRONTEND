@@ -7,5 +7,9 @@ export const getSelectors = () => {
 		userData: (() => useSelector(({ user }) => user.userData))()
 	};
 
-	return { user };
+	const items = {
+		items: (() => useSelector(({ items }) => items))()
+	};
+
+	return { user, items };
 };
