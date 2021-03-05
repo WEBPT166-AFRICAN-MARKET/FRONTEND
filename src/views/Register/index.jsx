@@ -4,23 +4,22 @@ import * as yup from 'yup';
 import { useHistory } from 'react-router-dom';
 
 import { register } from '../../redux/actions/actions';
-import './Register.css'
 
 const RegisterView = props => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const [formState, setFormState] = useState({		
+	const [formState, setFormState] = useState({
 		username: '',
 		password: '',
-		passwordConfirm: '',		
+		passwordConfirm: '',
 		terms: ''
 	});
 	const [formValid, setFormValid] = useState(false);
 
-	const [errors, setErrors] = useState({		
+	const [errors, setErrors] = useState({
 		username: '',
 		password: '',
-		passwordConfirm: '',		
+		passwordConfirm: '',
 		terms: ''
 	});
 
@@ -77,7 +76,7 @@ const RegisterView = props => {
 			is: val => val && val.length > 0,
 			then: yup
 				.string()
-				.oneOf([yup.ref('password')], 'Password must be the same' )
+				.oneOf([yup.ref('password')], 'Password must be the same')
 				.required()
 		}),
 		terms: yup
@@ -97,7 +96,7 @@ const RegisterView = props => {
 	}
 
 	return (
-		<form onSubmit={submitForm}>
+		<form onSubmit={submitForm} className="registration">
 			<h1>New Seller Registration!</h1>
 			<h2>
 				Welcome! Please fill out the following information to continue.
@@ -116,7 +115,7 @@ const RegisterView = props => {
 			{errors.username.length > 0 ? (
 				<p className="error">{errors.username}</p>
 			) : null}
-			
+
 			<input
 				id="password"
 				type="password"
