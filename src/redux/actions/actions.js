@@ -1,15 +1,19 @@
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
-import { actions } from '../actionTypes';
+import { actionTypes } from '../actionTypes';
 
-const loginStart = () => ({ type: actions.user.LOGIN_START });
+/**
+ * User Actions
+ */
 
-const loginSuccess = ({ id, username }) => ({
-	type: actions.user.LOGIN_SUCCESS,
+export const loginStart = () => ({ type: actionTypes.user.LOGIN_START });
+
+export const loginSuccess = ({ id = 0, username }) => ({
+	type: actionTypes.user.LOGIN_SUCCESS,
 	payload: { id, username }
 });
 
-const loginFail = message => ({
-	type: actions.user.LOGIN_FAIL,
+export const loginFail = message => ({
+	type: actionTypes.user.LOGIN_FAIL,
 	payload: message
 });
 
@@ -31,42 +35,89 @@ const register = async ({ username, password }, dispatch) => {
 			return true;
 		});
 };
-
-const fetchStart = dispatch => {
-	dispatch({ type: FETCHING_START });
-	axiosWithAuth()
-		.get('')
+const login = async ({ username, password }, dispatch) => {
+	dispatch(loginStart());
+	return await axiosWithAuth()
+		.post('auth/login', { username, password })
 		.then(res => {
-			dispatch({ type: FETCHING_SUCCESS, payload: res.data });
+			console.log(res.data);
+			window.localStorage.setItem('token', res.data.token);
+			const { username, id } = res.data.user;
+			dispatch(loginSuccess({ username, id }));
 		})
-		.catch(error => dispatch({ type: FETCHING_FAIL, payload: error }));
+		.catch(e => {
+			console.warn(e);
+			dispatch(loginFail(e));
+		})
+		.then(() => {
+			return true;
+		});
 };
 
-const addItem = dispatch => {
+/**
+ * Items Actions
+ */
+
+const itemsLoading = () => ({
+	type: actionTypes.items.FETCHING_START
+});
+
+const fetchItems = dispatch => {
+	dispatch(itemsLoading());
+	axiosWithAuth()
+		.get('/items')
+		.then(res => {
+			console.log(res.data);
+			dispatch({
+				type: actionTypes.items.FETCHING_SUCCESS,
+				payload: res.data
+			});
+		})
+		.catch(error =>
+			dispatch({ type: actionTypes.items.FETCHING_FAIL, payload: error })
+		);
+};
+
+export const addItem = dispatch => {
 	return axiosWithAuth()
 		.post('')
 		.then(result => {
-			dispatch({ type: ADD_LISTING, payload: result.data });
+			dispatch({
+				type: actionTypes.items.ADD_LISTING,
+				payload: result.data
+			});
 		})
-		.catch(error => dispatch({ type: FETCHING_FAIL, payload: error }));
+		.catch(error =>
+			dispatch({ type: actionTypes.items.FETCHING_FAIL, payload: error })
+		);
 };
 
-const updateItem = dispatch => {
+export const updateItem = dispatch => {
 	return axiosWithAuth()
 		.put('')
 		.then(result => {
-			dispatch({ type: UPDATE_LISTING, payload: result.data });
+			dispatch({
+				type: actionTypes.items.UPDATE_LISTING,
+				payload: result.data
+			});
 		})
-		.catch(error => dispatch({ type: FETCHING_FAIL, payload: error }));
+		.catch(error =>
+			dispatch({ type: actionTypes.items.FETCHING_FAIL, payload: error })
+		);
 };
 
-const deleteItem = dispatch => {
+export const deleteItem = dispatch => {
 	return axiosWithAuth()
 		.delete('')
 		.then(result => {
-			dispatch({ type: DELETE_LISTING, payload: result.data });
+			dispatch({
+				type: actionTypes.items.DELETE_LISTING,
+				payload: result.data
+			});
 		})
-		.catch(error => dispatch({ type: FETCHING_FAIL, payload: error }));
+		.catch(error =>
+			dispatch({ type: actionTypes.items.FETCHING_FAIL, payload: error })
+		);
 };
 
-export { register };
+export { register, login, fetchItems };

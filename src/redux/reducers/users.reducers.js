@@ -1,4 +1,4 @@
-import { actions } from '../actionTypes';
+import { actionTypes } from '../actionTypes';
 
 const initialState = {
 	userData: undefined,
@@ -10,13 +10,13 @@ const initialState = {
 
 export const user = (state = initialState, action) => {
 	switch (action.type) {
-		case actions.user.LOGIN_START:
+		case actionTypes.user.LOGIN_START:
 			return {
 				...state,
 				isLoading: true,
 				error: ''
 			};
-		case actions.user.LOGIN_SUCCESS:
+		case actionTypes.user.LOGIN_SUCCESS:
 			console.log('success');
 			return {
 				...state,
@@ -24,7 +24,7 @@ export const user = (state = initialState, action) => {
 				userData: action.payload,
 				isAuthenticated: true
 			};
-		case actions.user.LOGIN_FAIL:
+		case actionTypes.user.LOGIN_FAIL:
 			return {
 				...state,
 				isAuthenticated: false,
