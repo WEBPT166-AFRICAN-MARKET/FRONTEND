@@ -4,28 +4,23 @@ import * as yup from 'yup';
 import { useHistory } from 'react-router-dom';
 
 import { register } from '../../redux/actions/actions';
+import './Register.css'
 
 const RegisterView = props => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const [formState, setFormState] = useState({
-		name: '',
-		email: '',
+	const [formState, setFormState] = useState({		
 		username: '',
 		password: '',
-		passwordConfirm: '',
-		location: '',
+		passwordConfirm: '',		
 		terms: ''
 	});
 	const [formValid, setFormValid] = useState(false);
 
-	const [errors, setErrors] = useState({
-		name: '',
-		email: '',
+	const [errors, setErrors] = useState({		
 		username: '',
 		password: '',
-		passwordConfirm: '',
-		location: '',
+		passwordConfirm: '',		
 		terms: ''
 	});
 
@@ -76,21 +71,15 @@ const RegisterView = props => {
 	};
 
 	const formSchema = yup.object().shape({
-		name: yup.string().required('Name is required'),
-		email: yup
-			.string()
-			.email('Email must be valid')
-			.required('Email is required'),
 		username: yup.string().required('Please pick a username'),
 		password: yup.string().min(8).max(20),
 		passwordConfirm: yup.string().when('password', {
 			is: val => val && val.length > 0,
 			then: yup
 				.string()
-				.oneOf([yup.ref('password')], 'Password must be the same')
+				.oneOf([yup.ref('password')], 'Password must be the same' )
 				.required()
 		}),
-		location: yup.string().required('Location is required'),
 		terms: yup
 			.boolean()
 			.oneOf([true], 'Please agree to Terms and Conditions to continue')
@@ -110,23 +99,9 @@ const RegisterView = props => {
 	return (
 		<form onSubmit={submitForm}>
 			<h1>New Seller Registration!</h1>
-			<p>
+			<h2>
 				Welcome! Please fill out the following information to continue.
-			</p>
-
-			<input
-				id="name"
-				type="text"
-				name="name"
-				value={formState.name}
-				placeholder="Name"
-				onChange={inputChange}
-				data-cy="name"
-			/>
-
-			{errors.name.length > 0 ? (
-				<p className="error">{errors.name}</p>
-			) : null}
+			</h2>
 
 			<input
 				id="username"
@@ -141,21 +116,7 @@ const RegisterView = props => {
 			{errors.username.length > 0 ? (
 				<p className="error">{errors.username}</p>
 			) : null}
-
-			<input
-				id="email"
-				type="text"
-				name="email"
-				value={formState.email}
-				placeholder="Email"
-				onChange={inputChange}
-				data-cy="email"
-			/>
-
-			{errors.email.length > 0 ? (
-				<p className="error">{errors.email}</p>
-			) : null}
-
+			
 			<input
 				id="password"
 				type="password"
@@ -182,20 +143,6 @@ const RegisterView = props => {
 
 			{errors.passwordConfirm.length > 0 ? (
 				<p className="error">{errors.passwordConfirm}</p>
-			) : null}
-
-			<input
-				id="location"
-				type="text"
-				name="location"
-				value={formState.location}
-				placeholder="Location"
-				onChange={inputChange}
-				data-cy="location"
-			/>
-
-			{errors.location.length > 0 ? (
-				<p className="error">{errors.location}</p>
 			) : null}
 
 			<label htmlFor="terms" className="terms">
