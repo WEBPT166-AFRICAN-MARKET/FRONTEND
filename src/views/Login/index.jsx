@@ -3,7 +3,6 @@ import * as yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../redux/actions/actions';
 
-import './Login.css';
 import { useDispatch } from 'react-redux';
 
 const LoginView = props => {
@@ -86,7 +85,7 @@ const LoginView = props => {
 	}
 
 	return (
-		<form onSubmit={submitForm}>
+		<form onSubmit={submitForm} className= "registration">
 			<h1>Welcome Back!</h1>
 			<h2>You must log in to continue.</h2>
 
