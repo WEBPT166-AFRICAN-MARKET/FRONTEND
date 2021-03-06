@@ -86,7 +86,7 @@ const LoginView = props => {
 	}
 
 	return (
-		<form onSubmit={submitForm}>
+		<form onSubmit={submitForm} className= "registration">
 			<h1>Welcome Back!</h1>
 			<h2>You must log in to continue.</h2>
 
