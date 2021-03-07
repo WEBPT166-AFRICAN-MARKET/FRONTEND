@@ -11,8 +11,6 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 let customTheme = createMuiTheme({
 	palette: {
 		background: {
-			lighter: '#545454cc',
-			light: '#424242cc',
 			main: '#2f2f30'
 		},
 		primary: {
@@ -36,7 +34,7 @@ let customTheme = createMuiTheme({
 			'"Segoe UI Emoji"',
 			'"Segoe UI Symbol"'
 		].join(','),
-		fontSize: 10
+		fontSize: 16
 	}
 });
 

@@ -22,13 +22,11 @@ const register = async ({ username, password }, dispatch) => {
 	return await axiosWithAuth()
 		.post('auth/register', { username, password })
 		.then(res => {
-			console.log(res.data);
 			window.localStorage.setItem('token', res.data.token);
 			const { id, username } = res.data.newUser;
 			dispatch(loginSuccess({ id, username }));
 		})
 		.catch(e => {
-			console.warn(e);
 			dispatch(loginFail(e));
 		})
 		.then(() => {
@@ -40,13 +38,11 @@ const login = async ({ username, password }, dispatch) => {
 	return await axiosWithAuth()
 		.post('auth/login', { username, password })
 		.then(res => {
-			console.log(res.data);
 			window.localStorage.setItem('token', res.data.token);
 			const { username, id } = res.data.user;
 			dispatch(loginSuccess({ username, id }));
 		})
 		.catch(e => {
-			console.warn(e);
 			dispatch(loginFail(e));
 		})
 		.then(() => {
@@ -77,13 +73,12 @@ const fetchItems = dispatch => {
 	axiosWithAuth()
 		.get('/items')
 		.then(res => {
-			console.log(res.data);
 			dispatch(fetchItemsSuccess(res.data));
 		})
 		.catch(error => dispatch(itemsFail(error)));
 };
 
-export const addItem = (items, dispatch) => {
+const addItem = (items, dispatch) => {
 	dispatch(itemsLoading());
 	const { name, price, location, description, user_id } = items;
 
@@ -152,4 +147,4 @@ export const deleteItem = dispatch => {
 		);
 };
 
-export { register, login, fetchItems };
+export { register, login, fetchItems, addItem };

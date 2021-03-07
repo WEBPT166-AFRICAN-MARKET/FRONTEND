@@ -43,7 +43,6 @@ const LoginView = props => {
 
 	const submitForm = e => {
 		e.preventDefault();
-		console.log('Form has ben submitted!');
 		const { username, password } = formState;
 		login({ username, password }, dispatch).then(res => {
 			if (res) history.replace('/');
@@ -58,7 +57,6 @@ const LoginView = props => {
 
 	const inputChange = e => {
 		e.persist();
-		console.log('Input has been changed!', e.target.value);
 		const newFormData = {
 			...formState,
 			[e.target.name]:
@@ -85,7 +83,7 @@ const LoginView = props => {
 	}
 
 	return (
-		<form onSubmit={submitForm} className= "registration">
+		<form onSubmit={submitForm} className="registration">
 			<h1>Welcome Back!</h1>
 			<h2>You must log in to continue.</h2>
 

@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 import { getSelectors } from '../../selectors';
 import Panel from './Panel';
 import { fetchItems } from '../../redux/actions/actions';
+import AddItem from './AddItem';
 
 const useStyles = makeStyles(theme => ({
 	backdrop: {
@@ -26,27 +27,19 @@ const useStyles = makeStyles(theme => ({
 		position: 'absolute',
 		bottom: theme.spacing(8),
 		right: theme.spacing(8)
-	},
-	form: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'start',
-		justifyContent: 'center',
-		zIndex: theme.zIndex.drawer + 2
 	}
 }));
 
 const UserHome = () => {
 	const classes = useStyles();
-	const { username } = getSelectors().user.userData;
+	const { username, id } = getSelectors().user.userData;
 	const dispatch = useDispatch();
-	const store = getSelectors().items.items;
+	const store = getSelectors().items.items.data;
 
 	const [addItemModalState, setAddItemModalState] = useState(false);
 	const [tabState, setTabState] = useState(0);
 
-	const toggleModal = e => {
-		e.preventDefault();
+	const toggleModal = () => {
 		setAddItemModalState(!addItemModalState);
 	};
 
@@ -58,8 +51,6 @@ const UserHome = () => {
 	React.useEffect(() => {
 		fetchItems(dispatch);
 	}, []);
-
-	console.log('Store => ', store);
 
 	return (
 		<>
@@ -91,7 +82,11 @@ const UserHome = () => {
 							<Panel store={store} />
 						</TabPanel>
 						<TabPanel value={tabState} index={1}>
-							<h2>My Store</h2>
+							<Panel
+								store={store.filter(
+									item => item.user_id === id
+								)}
+							/>
 						</TabPanel>
 						<TabPanel value={tabState} index={2}>
 							<h2>Username: {username}</h2>
@@ -113,34 +108,7 @@ const UserHome = () => {
 				open={addItemModalState}
 				onClick={toggleModal}
 			>
-				<Box
-					bgcolor="#555"
-					boxShadow="0 0 5px #fff"
-					display="flex"
-					justifyContent="center"
-					alignItems="center"
-					flexDirection="column"
-					width="50%"
-					height="50%"
-					borderRadius="1em"
-					onClick={e => {
-						e.stopPropagation();
-					}}
-				>
-					<h2>Add An Item</h2>
-					<form
-						className={classes.form}
-						onSubmit={e => {
-							e.preventDefault();
-						}}
-					>
-						<TextField label="Item Name" variant="filled" />
-						<TextField label="Price" variant="filled" />
-						<Button type="submit" style={{ margin: '1em auto' }}>
-							Submit
-						</Button>
-					</form>
-				</Box>
+				<AddItem toggleModal={() => toggleModal()} />
 			</Backdrop>
 		</>
 	);
