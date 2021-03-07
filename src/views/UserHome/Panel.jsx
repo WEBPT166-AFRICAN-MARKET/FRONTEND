@@ -2,10 +2,6 @@ import { Box, GridList, GridListTile, makeStyles } from '@material-ui/core';
 import React from 'react';
 import NumberFormat from 'react-number-format';
 
-<<<<<<< HEAD
-const Panel = ({ store }) => {
-	return <>{store.length > 0 ? <h1>Panel</h1> : <EmptyStore />}</>;
-=======
 const useStyles = makeStyles(theme => ({
 	gridList: {
 		display: 'flex',
@@ -65,7 +61,6 @@ const ItemCard = ({ item }) => {
 			</GridListTile>
 		</Box>
 	);
->>>>>>> dev
 };
 
 const EmptyStore = () => (
