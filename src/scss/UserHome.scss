@@ -7,11 +7,14 @@
 }
 
 #userHomePanel {
+	position: relative;
 	padding: 1em;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: stretch;
 	justify-content: stretch;
+	width: 90vw;
+	max-width: 1440px;
 	height: 90vh;
 	flex-grow: 1;
 	background-color: #424242cc;

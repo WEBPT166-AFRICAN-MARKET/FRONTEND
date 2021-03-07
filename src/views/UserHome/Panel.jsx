@@ -9,8 +9,8 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: 'space-around',
 		backgroundColor: 'inherit',
 		margin: '0 auto',
-		width: '90vw',
-		height: '70vh',
+		width: '100%',
+		height: '100%',
 		overflow: 'scroll'
 	}
 }));
