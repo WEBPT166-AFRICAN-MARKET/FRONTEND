@@ -22,13 +22,27 @@ const register = async ({ username, password }, dispatch) => {
 	return await axiosWithAuth()
 		.post('auth/register', { username, password })
 		.then(res => {
-			console.log(res.data);
 			window.localStorage.setItem('token', res.data.token);
 			const { id, username } = res.data.newUser;
 			dispatch(loginSuccess({ id, username }));
 		})
 		.catch(e => {
-			console.warn(e);
+			dispatch(loginFail(e));
+		})
+		.then(() => {
+			return true;
+		});
+};
+const login = async ({ username, password }, dispatch) => {
+	dispatch(loginStart());
+	return await axiosWithAuth()
+		.post('auth/login', { username, password })
+		.then(res => {
+			window.localStorage.setItem('token', res.data.token);
+			const { username, id } = res.data.user;
+			dispatch(loginSuccess({ username, id }));
+		})
+		.catch(e => {
 			dispatch(loginFail(e));
 		})
 		.then(() => {
@@ -62,34 +76,65 @@ const itemsLoading = () => ({
 	type: actionTypes.items.FETCHING_START
 });
 
+const fetchItemsSuccess = items => ({
+	type: actionTypes.items.FETCHING_SUCCESS,
+	payload: items
+});
+
+const itemsFail = error => ({
+	type: actionTypes.items.FETCHING_FAIL,
+	payload: error
+});
+
 const fetchItems = dispatch => {
 	dispatch(itemsLoading());
 	axiosWithAuth()
 		.get('/items')
 		.then(res => {
-			console.log(res.data);
-			dispatch({
-				type: actionTypes.items.FETCHING_SUCCESS,
-				payload: res.data
-			});
+			dispatch(fetchItemsSuccess(res.data));
 		})
-		.catch(error =>
-			dispatch({ type: actionTypes.items.FETCHING_FAIL, payload: error })
-		);
+		.catch(error => dispatch(itemsFail(error)));
 };
 
-export const addItem = dispatch => {
+const addItem = (items, dispatch) => {
+	dispatch(itemsLoading());
+	const { name, price, location, description, user_id } = items;
+
+	if (!name) {
+		dispatch(itemsFail('Missing Item Name'));
+		return;
+	}
+
+	if (!price) {
+		dispatch(itemsFail('Missing Item Price'));
+		return;
+	}
+	if (!location) {
+		dispatch(itemsFail('Missing Item Location'));
+		return;
+	}
+	if (!description) {
+		dispatch(itemsFail('Missing Item Description'));
+		return;
+	}
+	if (!user_id) {
+		dispatch(itemsFail('Missing Item Author'));
+		return;
+	}
+
+	if (price % 1 !== 0) {
+		dispatch(itemsFail('Incorrect Number Format'));
+		return;
+	}
+
 	return axiosWithAuth()
-		.post('')
-		.then(result => {
-			dispatch({
-				type: actionTypes.items.ADD_LISTING,
-				payload: result.data
-			});
+		.post('/items', { name, price, location, description, user_id })
+		.then(res => {
+			if (res.status === 200) {
+				fetchItems(dispatch);
+			}
 		})
-		.catch(error =>
-			dispatch({ type: actionTypes.items.FETCHING_FAIL, payload: error })
-		);
+		.catch(error => dispatch(itemsFail(error)));
 };
 
 export const updateItem = dispatch => {
@@ -120,4 +165,4 @@ export const deleteItem = dispatch => {
 		);
 };
 
-export { register, login, fetchItems };
+export { register, login, fetchItems, addItem };

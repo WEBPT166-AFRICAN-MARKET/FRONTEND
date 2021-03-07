@@ -1,67 +1,61 @@
 .registration {
+	display: flex;
+	position: fixed;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	background: #252525;
+	border-radius: 4px;
+	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
 	h1 {
-		margin-left: auto;
-		margin-right: auto;
-		font-size: 3rem;
+		font-size: 2rem;
 		margin: 10px 0 0;
 		text-align: center;
 	}
 
 	h2 {
-		margin-left: auto;
-		margin-right: auto;
-		font-size: 2.5rem;
+		font-size: 1.5rem;
 		width: 100%;
 		margin: 10px 10px 10px;
 		text-align: center;
 	}
 
-	form {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		max-width: 800px;
-		margin: 0 auto;
-	}
-
-	label {
-		margin: 10px 0;
-		font-size: 1.4rem;
-	}
-
-	input,
-	select,
-	textarea {
+	& input {
 		margin: 10px 0 0;
-		margin-left: auto;
 		margin-right: auto;
-		display: flex;
+		margin-left: auto;
 		width: 40%;
 		border: 2px solid rgba(0, 0, 0, 0.2);
 		border-radius: 5px;
 		padding: 10px;
 		transition: all 0.3s;
-		font-size: 1.4rem;
+		font-size: 1rem;
 		letter-spacing: 0.5px;
 		background-color: white;
-	}
+		box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+			0 15px 12px rgba(0, 0, 0, 0.22);
 
-	input:focus {
-		outline: none;
-		border-color: #c59355;
-	}
+		&:focus {
+			outline: none;
+			border-color: #c59355;
+		}
 
-	input:placeholder {
-		color: #c59355;
+		&:placeholder {
+			color: #c59355;
+		}
 	}
 
 	button {
-		margin-left: auto;
-		margin-right: auto;
 		width: 150px;
-		display: inline-block;
 		padding: 8px 11px;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		text-transform: uppercase;
 		border: 0;
 		border-radius: 5px;
@@ -71,40 +65,36 @@
 		color: #d8d4d4;
 		cursor: pointer;
 		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-	}
+		margin-bottom: 10px;
+		margin-top: 10px;
 
-	button:hover {
-		background-image: none;
-		background-color: #c59355;
-		filter: brightness(70%);
-		box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
-	}
+		&:hover {
+			background-image: none;
+			background-color: #c59355;
+			filter: brightness(70%);
+			box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+		}
 
-	button:disabled {
-		background-image: none;
-		background-color: #5b5c5e;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		color: rgba(0, 0, 0, 0.1);
-		cursor: not-allowed;
+		&:disabled {
+			background-image: none;
+			background-color: #5b5c5e;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			color: #dfdfdf;
+			cursor: not-allowed;
+		}
 	}
 
 	.error {
-		margin-left: auto;
-		margin-right: auto;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		color: red;
 	}
 
 	.terms {
-		margin-left: auto;
-		margin-right: auto;
-		align-self: self-start;
-	}
-
-	.terms input {
-		text-align: center;
-		width: 15px;
-		display: inline-flex;
-		margin-right: 5px;
+		// align-self: center;
+		input {
+			text-align: center;
+			width: 15px;
+			margin-right: 5px;
+		}
 	}
 }
