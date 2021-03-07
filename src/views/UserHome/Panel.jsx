@@ -19,17 +19,19 @@ const Panel = ({ store }) => {
 	return <>{store.length > 0 ? <Store store={store} /> : <EmptyStore />}</>;
 };
 
-const EmptyStore = () => (
-	<Box
-		display="flex"
-		justifyContent="center"
-		alignItems="center"
-		flexDirection="column"
-	>
-		<img src="./empty.svg" alt="Empty Store" />
-		<p>No Items Here</p>
-	</Box>
-);
+const EmptyStore = props => {
+	return (
+		<Box
+			display="flex"
+			justifyContent="center"
+			alignItems="center"
+			flexDirection="column"
+		>
+			<img src="./empty.svg" alt="Empty Store" />
+			<p>No Items Here</p>
+		</Box>
+	);
+};
 
 const Store = ({ store }) => {
 	const classes = useStyles();
@@ -62,17 +64,5 @@ const ItemCard = ({ item }) => {
 		</Box>
 	);
 };
-
-const EmptyStore = () => (
-	<Box
-		display="flex"
-		justifyContent="center"
-		alignItems="center"
-		flexDirection="column"
-	>
-		<img src="./empty.svg" alt="Empty Store" />
-		<p>No Items Here</p>
-	</Box>
-);
 
 export default Panel;

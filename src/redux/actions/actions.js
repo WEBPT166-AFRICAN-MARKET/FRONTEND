@@ -49,24 +49,6 @@ const login = async ({ username, password }, dispatch) => {
 			return true;
 		});
 };
-const login = async ({ username, password }, dispatch) => {
-	dispatch(loginStart());
-	return await axiosWithAuth()
-		.post('auth/login', { username, password })
-		.then(res => {
-			console.log(res.data);
-			window.localStorage.setItem('token', res.data.token);
-			const { username, id } = res.data.user;
-			dispatch(loginSuccess({ username, id }));
-		})
-		.catch(e => {
-			console.warn(e);
-			dispatch(loginFail(e));
-		})
-		.then(() => {
-			return true;
-		});
-};
 
 /**
  * Items Actions
